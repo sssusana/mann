@@ -46,13 +46,17 @@ data = np.array([
 
 
 #normality tests
+#only if the p-value < 0.05 then the H0 is rejected: there's no evidence of normality
 
 ntest = normaltest(data)
 print(ntest)
-
+ 
 shawil = shapiro(data)
 print(shawil) 
 
+
+###Tests
+#if p-value > 0.05, there's no difference between means
  
 #slice the groups (masc = 0; fem= 1)
 masc = data[:, 1] == 0
@@ -60,15 +64,18 @@ masc = data[masc][:, 0]
 fem = data[:, 1] == 1
 fem = data[fem][:, 0]
 
+#Parametric
 #TSTUDENT 
 t_statistic_t2, p_value_t2 = ttest_ind(masc, fem)
 a
 print "Resultado para Análise Two-Sample T-Test", p_value_t2
 
-
+#Non-parametric
 #Mann-whitney
 p_value_m2 = mannwhitneyu(masc, fem)
 print "Resultado para Análise Mann Whitney", p_value_m2
+
+
 
 
 
